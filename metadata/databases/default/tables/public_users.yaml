@@ -9,3 +9,35 @@ array_relationships:
         table:
           name: tasks
           schema: public
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - email
+        - id
+        - username
+        - created_at
+        - updated_at
+    comment: ""
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - email
+        - id
+        - username
+      filter: {}
+    comment: ""
+  - role: user
+    permission:
+      columns:
+        - email
+        - id
+        - username
+        - created_at
+        - updated_at
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+    comment: ""
